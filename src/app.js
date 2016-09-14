@@ -8,9 +8,15 @@ const Monster = require('./player.js');
 /* Global variables */
 var canvas = document.getElementById('screen');
 var game = new Game(canvas, update, render);
-var player = new Player({x: 382, y: 460})
-var monster = new Monster({x: 382,y:200});
-
+var player = new Player({x: 382, y: 460});
+var monsters = [];
+for(var i=0;i<20;i++)
+{
+	monsters.push(new Monster({
+		x: Math.random()*760,
+		y: Math.random()*20 + 100
+	}));
+}
 /**
  * @function masterLoop
  * Advances the game in sync with the refresh rate of the screen
@@ -48,6 +54,7 @@ function update(elapsedTime) {
 function render(elapsedTime, ctx) {
   ctx.fillStyle = "lightblue";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  monsters.forEach(function(monster){monster.render(elapsedTime,ctx);});
   player.render(elapsedTime, ctx);
-  monster.render(elapsedTime,ctx);
 }
