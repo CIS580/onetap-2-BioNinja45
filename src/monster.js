@@ -65,12 +65,23 @@ Monster.prototype.update = function(elapsedTime)
  * {CanvasRenderingContext2D} ctx the context to render into
  */
 Monster.prototype.render = function(time, ctx) {
-  ctx.drawImage(
-    // image
-    this.spritesheet,
-    // source rectangle
-    this.frame*this.width, 0, this.width, this.height,
-    // destination rectangle
-    this.x, this.y, this.width, this.height
+	if(this.state=="right"){
+		ctx.drawImage(
+		// image
+		this.leftSpritesheet,
+		// source rectangle
+		this.frame*this.width, 0, this.width, this.height,
+		// destination rectangle
+		this.x, this.y, this.width, this.height
+		}
+	else{
+		ctx.drawImage(
+		// image
+		this.rightSpritesheet,
+		// source rectangle
+		this.frame*this.width, 0, this.width, this.height,
+		// destination rectangle
+		this.x, this.y, this.width, this.height
+	}
   );
 }
